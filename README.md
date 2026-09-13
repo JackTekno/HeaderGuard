@@ -86,6 +86,21 @@ flowchart LR
 
 ## Installation
 
+### Prebuilt binaries
+
+The easiest way to get started is to download a ready-made binary from the
+[Releases](https://github.com/JackTekno/HeaderGuard/releases) page — available
+for Windows, Linux, and macOS (amd64 & arm64). No Go installation required.
+
+```bash
+# Example for Linux amd64
+curl -LO https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-amd64
+chmod +x headerguard-linux-amd64
+./headerguard-linux-amd64
+```
+
+### Build from source
+
 You need Go 1.22 or newer to build from source.
 
 ```bash
