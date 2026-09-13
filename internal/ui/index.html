@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeaderGuard — Web Security Header Analysis</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <svg class="logo" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z" fill="#58a6ff"/>
+                <path d="M8.5 12l2.2 2.2 4.8-5" stroke="#0d1117" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>HeaderGuard</h1>
+            <span class="version">v1.0.0</span>
+        </div>
+        <div class="badge-warning">Authorized testing only — use on systems you own or have permission to test</div>
+    </header>
+
+    <section class="scanbar">
+        <div class="scan-row">
+            <input type="text" id="target" placeholder="example.com or subdomain.example.com"
+                   autocomplete="off" spellcheck="false"
+                   aria-label="Target URL">
+            <button id="scanBtn" class="btn-primary">Scan</button>
+        </div>
+        <div class="scan-options">
+            <label class="checkbox-label">
+                <input type="checkbox" id="followRedirects" checked>
+                Follow redirects
+            </label>
+            <span id="scanStatus" class="scan-status"></span>
+            <span id="elapsed" class="elapsed"></span>
+        </div>
+    </section>
+
+    <nav class="tabs" id="tabs">
+        <button class="tab active" data-tab="summary">Summary</button>
+        <button class="tab" data-tab="headers">Security Headers</button>
+        <button class="tab" data-tab="clickjacking">Clickjacking</button>
+        <button class="tab" data-tab="cookies">Cookies</button>
+        <button class="tab" data-tab="tls">TLS</button>
+        <button class="tab" data-tab="redirects">Redirects &amp; HTTPS</button>
+        <button class="tab" data-tab="dns">DNS</button>
+        <button class="tab" data-tab="preload">HSTS Preload</button>
+        <button class="tab" data-tab="report">Report</button>
+    </nav>
+
+    <main>
+        <!-- Summary -->
+        <section class="panel active" id="panel-summary">
+            <div id="summaryContent">
+                <div class="empty-state">
+                    <p>Enter a target URL and press <strong>Scan</strong> to start the analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Headers -->
+        <section class="panel" id="panel-headers">
+            <div id="headersContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- Clickjacking -->
+        <section class="panel" id="panel-clickjacking">
+            <div id="clickjackingVerdict"></div>
+            <div class="cj-note">
+                The verdict above is derived from the response headers (X-Frame-Options / CSP
+                frame-ancestors) and is more reliable than the visual test. The iframe
+                simulation below is a demonstration only.
+            </div>
+            <h3>Iframe Simulation (from the original tool)</h3>
+            <div class="cj-controls">
+                <input type="text" id="cjFrameUrl" placeholder="example.com" spellcheck="false">
+                <button class="btn" onclick="cjLoad()">Load</button>
+                <button class="btn" onclick="cjToggleTransparency()">Toggle Transparency</button>
+                <button class="btn" onclick="cjToggleOverlay()">Toggle Overlay</button>
+            </div>
+            <div class="test-frame">
+                <iframe id="cjFrame" src="about:blank"></iframe>
+                <button class="overlay-btn" id="cjOverlayBtn" onclick="cjOverlayClick()">Click Me!</button>
+            </div>
+            <div id="cjStatus" class="scan-status"></div>
+        </section>
+
+        <!-- Cookies -->
+        <section class="panel" id="panel-cookies">
+            <div id="cookiesContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- TLS -->
+        <section class="panel" id="panel-tls">
+            <div id="tlsContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- Redirects -->
+        <section class="panel" id="panel-redirects">
+            <div id="redirectsContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- DNS -->
+        <section class="panel" id="panel-dns">
+            <div id="dnsContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- HSTS Preload -->
+        <section class="panel" id="panel-preload">
+            <div id="preloadContent">
+                <div class="empty-state"><p>No results yet.</p></div>
+            </div>
+        </section>
+
+        <!-- Report -->
+        <section class="panel" id="panel-report">
+            <div id="reportActions">
+                <button class="btn" onclick="downloadJSON()">Download JSON</button>
+                <button class="btn" onclick="downloadMarkdown()">Download Markdown</button>
+                <button class="btn" onclick="copyReport()">Copy Report</button>
+                <button class="btn" onclick="copyShareURL()">Copy Share Link</button>
+            </div>
+            <h3>History (stored locally in your browser)</h3>
+            <div id="historyList" class="history-list"></div>
+            <button id="clearHistory" class="btn btn-danger" onclick="clearHistory()">Clear History</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>HeaderGuard v1.0.0 — web security header analysis: security headers, cookies, TLS,
+            redirects, DNS, HSTS preload, and clickjacking.</p>
+        <p class="muted">Authorized testing only. Do not use this tool against systems you do not
+            own or do not have permission to test.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
