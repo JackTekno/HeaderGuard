@@ -1,5 +1,9 @@
 # HeaderGuard
 
+[![Release](https://img.shields.io/github/v/release/JackTekno/HeaderGuard?style=flat-square&color=1f6feb)](https://github.com/JackTekno/HeaderGuard/releases)
+[![Go](https://img.shields.io/github/go-mod/go-version/JackTekno/HeaderGuard?style=flat-square&logo=go&logoColor=white)](https://github.com/JackTekno/HeaderGuard/blob/main/go.mod)
+[![License](https://img.shields.io/github/license/JackTekno/HeaderGuard?style=flat-square)](LICENSE)
+
 Alat analisis keamanan header web. Beri sebuah URL, dan HeaderGuard akan
 memeriksa header keamanan, cookie, konfigurasi TLS, rantai redirect, record
 DNS, dan status HSTS preload situs tersebut, lalu memberi nilai dari A+
@@ -19,6 +23,20 @@ aslinya masih ada, di tab Clickjacking.
 > dipakai untuk aktivitas ilegal.
 
 ---
+
+## Daftar Isi
+
+- [Yang diperiksa](#yang-diperiksa)
+- [Cara kerja](#cara-kerja)
+- [Instalasi](#instalasi)
+- [Penggunaan](#penggunaan)
+- [Aturan header keamanan](#aturan-header-keamanan)
+- [Penilaian](#penilaian)
+- [Catatan metodologi](#catatan-metodologi)
+- [Batasan](#batasan)
+- [Pengembangan](#pengembangan)
+- [Referensi](#referensi)
+- [Lisensi](#lisensi)
 
 ## Yang diperiksa
 
@@ -88,6 +106,31 @@ flowchart LR
      mis. ![Arsitektur](docs/images/architecture.png) -->
 
 ## Instalasi
+
+### Binary siap pakai
+
+Cara termudah: unduh binary jadi dari halaman
+[Releases](https://github.com/JackTekno/HeaderGuard/releases). Tidak perlu
+menginstal Go.
+
+| Platform | Binary |
+|---|---|
+| Windows (amd64) | [`headerguard-windows-amd64.exe`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-windows-amd64.exe) |
+| Linux (amd64) | [`headerguard-linux-amd64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-amd64) |
+| Linux (arm64) | [`headerguard-linux-arm64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-arm64) |
+| macOS (amd64) | [`headerguard-darwin-amd64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-darwin-amd64) |
+| macOS (arm64) | [`headerguard-darwin-arm64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-darwin-arm64) |
+
+Checksum SHA-256 untuk tiap aset ditampilkan di halaman releases.
+
+```bash
+# Contoh untuk Linux amd64
+curl -LO https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-amd64
+chmod +x headerguard-linux-amd64
+./headerguard-linux-amd64
+```
+
+### Build dari source
 
 Butuh Go 1.22 atau lebih baru untuk build dari source.
 

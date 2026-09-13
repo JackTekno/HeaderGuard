@@ -1,5 +1,9 @@
 # HeaderGuard
 
+[![Release](https://img.shields.io/github/v/release/JackTekno/HeaderGuard?style=flat-square&color=1f6feb)](https://github.com/JackTekno/HeaderGuard/releases)
+[![Go](https://img.shields.io/github/go-mod/go-version/JackTekno/HeaderGuard?style=flat-square&logo=go&logoColor=white)](https://github.com/JackTekno/HeaderGuard/blob/main/go.mod)
+[![License](https://img.shields.io/github/license/JackTekno/HeaderGuard?style=flat-square)](LICENSE)
+
 A web security header analysis tool. Give it a URL and it checks the security
 headers, cookies, TLS setup, redirect chain, DNS records, and HSTS preload
 status of the site, then grades the whole thing from A+ to F.
@@ -17,6 +21,20 @@ original iframe simulation is still in there, in the Clickjacking tab.
 > without protection, and do not use it for anything illegal.
 
 ---
+
+## Contents
+
+- [What it checks](#what-it-checks)
+- [How it works](#how-it-works)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Security header rules](#security-header-rules)
+- [Scoring](#scoring)
+- [Methodology notes](#methodology-notes)
+- [Limitations](#limitations)
+- [Development](#development)
+- [References](#references)
+- [License](#license)
 
 ## What it checks
 
@@ -89,8 +107,18 @@ flowchart LR
 ### Prebuilt binaries
 
 The easiest way to get started is to download a ready-made binary from the
-[Releases](https://github.com/JackTekno/HeaderGuard/releases) page — available
-for Windows, Linux, and macOS (amd64 & arm64). No Go installation required.
+[Releases](https://github.com/JackTekno/HeaderGuard/releases) page. No Go
+installation required.
+
+| Platform | Binary |
+|---|---|
+| Windows (amd64) | [`headerguard-windows-amd64.exe`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-windows-amd64.exe) |
+| Linux (amd64) | [`headerguard-linux-amd64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-amd64) |
+| Linux (arm64) | [`headerguard-linux-arm64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-linux-arm64) |
+| macOS (amd64) | [`headerguard-darwin-amd64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-darwin-amd64) |
+| macOS (arm64) | [`headerguard-darwin-arm64`](https://github.com/JackTekno/HeaderGuard/releases/latest/download/headerguard-darwin-arm64) |
+
+A SHA-256 checksum is shown next to each asset on the releases page.
 
 ```bash
 # Example for Linux amd64
